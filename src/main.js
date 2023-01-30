@@ -20,5 +20,9 @@ const cn = new CanvasNest(document.getElementById('app'), {
 import {TitleTrick} from "./js/TitleTrick.js";
 TitleTrick("Max 私人服务器")
 
-import './js/ClickCircle.js'
+
+import {clickEffect} from "./js/ClickCircle.js";
+
+
+
 

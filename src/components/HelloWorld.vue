@@ -1,13 +1,16 @@
 <script setup>
 import {onMounted, ref} from "vue";
-import {fairyDustCursor} from '../js/MoveCharacter.js'
 import {clockCursor} from '../js/MoveClock.js'
 import {emojiCursor} from "../js/MoveEmojiRain.js";
+import {Clickword} from "../js/ClickWord.js";
+import {followingDotCursor} from "../js/MoveDot.js";
+import {clickEffect} from "../js/ClickCircle.js";
 
 const bg = ref()
 const bgloading = ref(true)
 const face = ref()
 const wode = ref()
+const foot = ref()
 
 onMounted(() => {
   emojiCursor({
@@ -16,13 +19,27 @@ onMounted(() => {
     fontSize: '30px'
   })
 
-  const c1 = [];
+
+  const cc = [];
   wode.value.addEventListener('mouseenter',() => {
-    c1.push(clockCursor({element: wode.value,}))//注意父元素加上relative定位
+    cc.push(clockCursor({element: wode.value,}))//注意父元素加上relative定位
   })
   wode.value.addEventListener('mouseleave',() => {
-    setTimeout(()=>c1.shift().destroy(),1500)
+    setTimeout(()=>cc.shift().destroy(),1500)
   })
+
+
+  const cd = [];
+  foot.value.addEventListener('mouseenter',() => {
+    cd.push(followingDotCursor({element: foot.value,}))//注意父元素加上relative定位
+  })
+  foot.value.addEventListener('mouseleave',() => {
+    setTimeout(()=>cd.shift().destroy(),1500)
+  })
+
+
+  Clickword(foot.value)
+  clickEffect(foot.value)
 })
 
 
@@ -57,11 +74,13 @@ onMounted(() => {
     <!--  ↑↑↑↑  -->
     <!--  ↓↓正常文档流↓↓  -->
     <div class="">
-      <div ref="face" class="w-screen h-screen">
+      <div ref="face" class="w-full h-screen relative">
 
       </div>
-      <div ref="wode" class="h-screen relative"></div>
-      <div ref="" class="h-screen relative"></div>
+      <div ref="wode" class="h-96 relative bg-blue-600 bg-opacity-50"></div>
+      <div ref="foot" class="h-screen relative">
+
+      </div>
     </div>
   </div>
 

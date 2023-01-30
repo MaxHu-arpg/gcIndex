@@ -1,5 +1,5 @@
 //↓↓↓↓↓↓↓↓↓↓↓↓鼠标点击弹出烟花波纹↓↓↓↓↓↓↓↓↓↓↓↓
-(function clickEffect(element) {
+export function clickEffect(e) {
     let balls = [];
     let longPressed = false;
     let longPress;
@@ -9,40 +9,48 @@
     let normal;
     let ctx;
     const colours = ["#F73859", "#14FFEC", "#00E0FF", "#FF99FE", "#FAF15D"];
-    const canvas = document.createElement("canvas");
-    document.body.appendChild(canvas);
-    canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
-    const pointer = document.createElement("span");
-    pointer.classList.add("pointer");
-    document.body.appendChild(pointer);
 
-    if (canvas.getContext && window.addEventListener) {
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("style", "top: 0; left: 0; z-index: 99999; pointer-events: none;");
+    let element = e || window;
+    if (e) {
+        canvas.style.position = "absolute";
+        element.appendChild(canvas);
+        canvas.width = element.clientWidth;
+        canvas.height = element.clientHeight;
+    } else {
+        canvas.style.position = "fixed";
+        document.body.appendChild(canvas);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+
+    if (canvas.getContext && window.addEventListener && element.addEventListener) {
         ctx = canvas.getContext("2d");
         updateSize();
         window.addEventListener('resize', updateSize, false);
         loop();
-        window.addEventListener("mousedown", function(e) {
-            pushBalls(randBetween(10, 20), e.clientX, e.clientY);
-            document.body.classList.add("is-pressed");
+        element.addEventListener("mousedown", function(e) {
+            pushBalls(randBetween(10, 20), (e.clientX - element.getBoundingClientRect().left), (e.clientY - element.getBoundingClientRect().top));
+            element.classList.add("is-pressed");
             longPress = setTimeout(function(){
-                document.body.classList.add("is-longpress");
+                element.classList.add("is-longpress");
                 longPressed = true;
             }, 500);
         }, false);
-        window.addEventListener("mouseup", function(e) {
+        element.addEventListener("mouseup", function(e) {
             clearInterval(longPress);
-            if (longPressed == true) {
-                document.body.classList.remove("is-longpress");
-                pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), e.clientX, e.clientY);
+            if (longPressed === true) {
+                element.classList.remove("is-longpress");
+                pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), (e.clientX - element.getBoundingClientRect().left), (e.clientY - element.getBoundingClientRect().top));
                 longPressed = false;
             }
-            document.body.classList.remove("is-pressed");
+            element.classList.remove("is-pressed");
         }, false);
-        window.addEventListener("mousemove", function(e) {
-            let x = e.clientX;
-            let y = e.clientY;
-            pointer.style.top = y + "px";
-            pointer.style.left = x + "px";
+        element.addEventListener("mousemove", function(e) {
+            let x = e.clientX - element.getBoundingClientRect().left;
+            let y = e.clientY - element.getBoundingClientRect().top;
         }, false);
     } else {
         console.log("canvas or addEventListener is unsupported!");
@@ -50,13 +58,24 @@
 
 
     function updateSize() {
-        canvas.width = window.innerWidth * 2;
-        canvas.height = window.innerHeight * 2;
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-        ctx.scale(2, 2);
-        width = (canvas.width = window.innerWidth);
-        height = (canvas.height = window.innerHeight);
+        if (e) {
+            canvas.width = element.clientWidth * 2;
+            canvas.height = element.clientHeight * 2;
+            canvas.style.width = element.clientWidth + 'px';
+            canvas.style.height = element.clientHeight + 'px';
+            ctx.scale(2, 2);
+            width = (canvas.width = element.clientWidth);
+            height = (canvas.height = element.clientHeight);
+
+        } else {
+            canvas.width = window.innerWidth * 2;
+            canvas.height = window.innerHeight * 2;
+            canvas.style.width = window.innerWidth + 'px';
+            canvas.style.height = window.innerHeight + 'px';
+            ctx.scale(2, 2);
+            width = (canvas.width = window.innerWidth);
+            height = (canvas.height = window.innerHeight);
+        }
         origin = {
             x: width / 2,
             y: height / 2
@@ -71,7 +90,7 @@
             this.x = x;
             this.y = y;
             this.angle = Math.PI * 2 * Math.random();
-            if (longPressed == true) {
+            if (longPressed === true) {
                 this.multiplier = randBetween(14 + multiplier, 15 + multiplier);
             } else {
                 this.multiplier = randBetween(6, 12);
@@ -114,7 +133,7 @@
             ctx.fill();
             b.update();
         }
-        if (longPressed == true) {
+        if (longPressed === true) {
             multiplier += 0.2;
         } else if (!longPressed && multiplier >= 0) {
             multiplier -= 0.4;
@@ -131,5 +150,5 @@
             }
         }
     }
-})()
+}
 //↑↑↑↑↑↑↑↑↑↑↑↑鼠标点击弹出烟花波纹↑↑↑↑↑↑↑↑↑↑↑↑
