@@ -1,0 +1,27 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@layer base {
+    p {
+        @apply font-sans text-base font-normal tracking-wide text-black antialiased;
+    }
+    button>p {
+        @apply text-center
+    }
+
+}
+
+@layer components {
+    .btn-yellow {
+        @apply py-0.5 px-1 bg-amber-400
+        rounded-lg shadow-md
+        hover:bg-amber-300
+        focus:outline-none focus:ring-2
+        focus:ring-amber-600
+        focus:ring-opacity-75
+        active:bg-yellow-500
+    }
+}
