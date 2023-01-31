@@ -4,7 +4,7 @@ import {onMounted} from "vue";
 onMounted(async ()=> {
   // await import('../live2d/live2d.js');
   // loadlive2d("live2d", "/src/live2d/model/liang/2.json");
-  await import('https://fastly.jsdelivr.net/gh/MaxHu-arpg/live2d-widget@master/autoload.js')
+  await import('https://cdn.jsdelivr.net/gh/MaxHu-arpg/live2d-widget@latest/autoload.js')
 
 })
 

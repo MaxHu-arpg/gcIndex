@@ -1,16 +1,41 @@
 <script setup>
+import {onMounted, onUnmounted} from "vue";
 import HelloWorld from './components/HelloWorld.vue'
-import ShowFps from "./components/ShowFps.vue";
+import BodyFirst from './components/BodyFirst.vue'
+import BodySecond from './components/BodySecond.vue'
+import BottomContent from "./components/BottomContent.vue";
+import ShowInfo from "./components/ShowInfo.vue";
 import LiveTwod from "./components/LiveTwod.vue";
+import CanvasNest from "canvas-nest.js";
 
+
+
+onMounted(()=>{
+    const cn = new CanvasNest(document.body, {
+      color: '0,0,0',
+      pointColor: '0,0,0',
+      opacity: 0.6,
+      count: 300,
+      zIndex: '-2147483648'
+    });
+    // cn.destroy();
+
+  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/TitleTrick.js").then(({TitleTrick})=>{
+    TitleTrick("Max 私人服务器")
+  })
+})
+
+onUnmounted(()=>{})
 
 </script>
 
 <template>
   <HelloWorld/>
-  <ShowFps/>
+  <BodyFirst/>
+  <BodySecond/>
+  <BottomContent/>
+  <ShowInfo/>
   <LiveTwod/>
-
 </template>
 
 <style scoped>

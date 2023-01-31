@@ -1,55 +1,31 @@
 <script setup>
-import {onMounted, ref} from "vue";
-import {clockCursor} from '../js/MoveClock.js'
-import {emojiCursor} from "../js/MoveEmojiRain.js";
-import {Clickword} from "../js/ClickWord.js";
-import {followingDotCursor} from "../js/MoveDot.js";
-import {clickEffect} from "../js/ClickCircle.js";
+import {onMounted, onUnmounted, ref} from "vue";
+
 
 const bg = ref()
 const bgloading = ref(true)
 const face = ref()
-const wode = ref()
-const foot = ref()
+
+
 
 onMounted(() => {
-  emojiCursor({
-    element: face.value,
-    emoji: ["🤤", "😘", "😚"],
-    fontSize: '30px'
+  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveSpringyEmoji.js").then(({springyEmojiCursor})=>{
+    springyEmojiCursor({
+      element: face.value,
+      emoji: "🤤",
+      fontSize: '24px'
+    })
   })
-
-
-  const cc = [];
-  wode.value.addEventListener('mouseenter',() => {
-    cc.push(clockCursor({element: wode.value,}))//注意父元素加上relative定位
-  })
-  wode.value.addEventListener('mouseleave',() => {
-    setTimeout(()=>cc.shift().destroy(),1500)
-  })
-
-
-  const cd = [];
-  foot.value.addEventListener('mouseenter',() => {
-    cd.push(followingDotCursor({element: foot.value,}))//注意父元素加上relative定位
-  })
-  foot.value.addEventListener('mouseleave',() => {
-    setTimeout(()=>cd.shift().destroy(),1500)
-  })
-
-
-  Clickword(foot.value)
-  clickEffect(foot.value)
 })
 
-
+onUnmounted(()=>{})
 </script>
 
 <template>
   <div>
     <!--  ↓↓↓↓  -->
     <div class="absolute -z-100000">
-      <video src="甘雨夜晚.mp4" ref="bg" class="w-screen h-screen object-cover"
+      <video src="/video/甘雨夜晚.mp4" ref="bg" class="w-screen h-screen object-cover"
              @canplaythrough="bg.play()" @pause='bgloading=true;bg.play();' @play="bgloading=false"
              loop autoplay muted></video>
     </div>
@@ -73,14 +49,9 @@ onMounted(() => {
 
     <!--  ↑↑↑↑  -->
     <!--  ↓↓正常文档流↓↓  -->
-    <div class="">
-      <div ref="face" class="w-full h-screen relative">
+    <div ref="face" class="w-full h-screen relative">
 
-      </div>
-      <div ref="wode" class="h-96 relative bg-blue-600 bg-opacity-50"></div>
-      <div ref="foot" class="h-screen relative">
 
-      </div>
     </div>
   </div>
 
@@ -159,7 +130,7 @@ onMounted(() => {
 .poster__arrow {
   width: 100%;
   height: 15px;
-  background-image: url("../assets/arrow.png");
+  background-image: url("/img/arrow.png");
   background-size: cover;
   animation: arrow 2.4s linear 0s infinite;
 }
