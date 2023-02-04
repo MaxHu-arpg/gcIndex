@@ -2,36 +2,29 @@
 import {onMounted, onUnmounted, ref} from "vue";
 
 
-const SecondRef = ref()
+const FirstRef = ref()
 
-onMounted(()=>{
-  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveDot.js").then(({followingDotCursor})=>{
-    const cd = [];
-    SecondRef.value.addEventListener('mouseenter',() => {
-      cd.push(followingDotCursor({element: SecondRef.value,}))//注意父元素加上relative定位
+onMounted(() => {
+  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveClock.js").then(({clockCursor}) => {
+    const cc = [];
+    FirstRef.value.addEventListener('mouseenter', () => {
+      cc.push(clockCursor({element: FirstRef.value,}))//注意父元素加上relative定位
     })
-    SecondRef.value.addEventListener('mouseleave',() => {
-      setTimeout(()=>cd.shift().destroy(),1500)
+    FirstRef.value.addEventListener('mouseleave', () => {
+      setTimeout(() => cc.shift().destroy(), 1500)
     })
-  })
-
-
-
-
-  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/ClickCircle.js").then(({clickEffect})=>{
-    clickEffect(SecondRef.value)
   })
 })
 
-onUnmounted(()=>{})
+onUnmounted(() => {
+})
 
 </script>
 
 <template>
-  <div ref="SecondRef" class="h-screen relative flex">
+  <div ref="FirstRef" className="h-96 relative bg-blue-600 bg-opacity-10">
 
   </div>
-
 </template>
 
 <style scoped>
