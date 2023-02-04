@@ -4,11 +4,11 @@ import {onMounted, ref} from "vue";
 const bottom = ref()
 
 onMounted(() => {
-  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/ClickWord.js").then(({Clickword})=>{
+  import("https://fastly.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/ClickWord.js").then(({Clickword})=>{
     Clickword(bottom.value)
   })
 
-  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveTextFlag.js").then(({textFlag})=>{
+  import("https://fastly.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveTextFlag.js").then(({textFlag})=>{
     let tf
     bottom.value.addEventListener('mouseenter',() => {
       tf = textFlag({element: bottom.value,text:"关注我",fontSize:20,font:"sans-serif"})//注意父元素加上relative定位
@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 <template>
   <div ref="bottom" class="relative">
-    <a class="" href="https://space.bilibili.com/16383115" target="_blank"><img class="w-full" src="https://cdn.jsdelivr.net/gh/MaxHu-arpg/gcIndex-cdn@0.0.1/dist/img/psc.jpg" alt="feet"></a>
+    <a class="" href="https://space.bilibili.com/16383115" target="_blank"><img class="w-full" src="https://fastly.jsdelivr.net/gh/MaxHu-arpg/gcIndex-cdn@0.0.1/dist/img/psc.jpg" alt="feet"></a>
     <div class="flex overflow-hidden bg-gray-50">
       <div style="flex: 1"></div>
       <div style="flex: 8" class="mt-20 mb-6 pt-2 border-t-2 border-gray-200">

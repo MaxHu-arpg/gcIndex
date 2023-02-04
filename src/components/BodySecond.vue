@@ -5,7 +5,7 @@ import {onMounted, onUnmounted, ref} from "vue";
 const FirstRef = ref()
 
 onMounted(() => {
-  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveClock.js").then(({clockCursor}) => {
+  import("https://fastly.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveClock.js").then(({clockCursor}) => {
     const cc = [];
     FirstRef.value.addEventListener('mouseenter', () => {
       cc.push(clockCursor({element: FirstRef.value,}))//注意父元素加上relative定位
