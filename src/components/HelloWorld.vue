@@ -25,7 +25,7 @@ onUnmounted(()=>{})
   <div>
     <!--  ↓↓↓↓  -->
     <div class="absolute -z-100000">
-      <video src="https://fastly.jsdelivr.net/gh/MaxHu-arpg/gcIndex-cdn@0.0.1/dist/video/%E7%94%98%E9%9B%A8%E5%A4%9C%E6%99%9A.mp4" ref="bg" class="w-screen h-screen object-cover"
+      <video src="/video/甘雨夜晚.mp4" ref="bg" class="w-screen h-screen object-cover"
              @canplaythrough="bg.play()" @pause='bgloading=true;bg.play();' @play="bgloading=false"
              loop autoplay muted></video>
     </div>
