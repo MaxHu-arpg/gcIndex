@@ -5,7 +5,7 @@ import {onMounted, onUnmounted, ref} from "vue";
 const SecondRef = ref()
 
 onMounted(()=>{
-  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveDot.js").then(({followingDotCursor})=>{
+  import("https://fastly.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/MoveDot.js").then(({followingDotCursor})=>{
     const cd = [];
     SecondRef.value.addEventListener('mouseenter',() => {
       cd.push(followingDotCursor({element: SecondRef.value,}))//注意父元素加上relative定位
@@ -18,7 +18,7 @@ onMounted(()=>{
 
 
 
-  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/ClickCircle.js").then(({clickEffect})=>{
+  import("https://fastly.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/ClickCircle.js").then(({clickEffect})=>{
     clickEffect(SecondRef.value)
   })
 })

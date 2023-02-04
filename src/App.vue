@@ -20,7 +20,7 @@ onMounted(()=>{
     });
     // cn.destroy();
 
-  import("https://cdn.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/TitleTrick.js").then(({TitleTrick})=>{
+  import("https://fastly.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/TitleTrick.js").then(({TitleTrick})=>{
     TitleTrick("Max 私人服务器")
   })
 })
