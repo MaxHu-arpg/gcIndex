@@ -9,23 +9,24 @@ import LiveTwod from "./components/LiveTwod.vue";
 import CanvasNest from "canvas-nest.js";
 
 
+onMounted(() => {
+  const cn = new CanvasNest(document.body, {
+    color: '0,0,0',
+    pointColor: '0,0,0',
+    opacity: 0.6,
+    count: 300,
+    zIndex: '-2147483648'
+  });
+  // cn.destroy();
 
-onMounted(()=>{
-    const cn = new CanvasNest(document.body, {
-      color: '0,0,0',
-      pointColor: '0,0,0',
-      opacity: 0.6,
-      count: 300,
-      zIndex: '-2147483648'
-    });
-    // cn.destroy();
-
-  import("https://fastly.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/TitleTrick.js").then(({TitleTrick})=>{
-    TitleTrick("Max 私人服务器")
+  import("https://fastly.jsdelivr.net/gh/MaxHu-arpg/jsEffect@latest/js/TitleTrick.js").then(({TitleTrick}) => {
+    TitleTrick("砸瓦鲁多的奇妙冒险")
   })
+  import('./util/TopScrollScreen.js')
 })
 
-onUnmounted(()=>{})
+onUnmounted(() => {
+})
 
 </script>
 
