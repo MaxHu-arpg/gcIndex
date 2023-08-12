@@ -42,7 +42,7 @@ onMounted(() => {
 <!--              <a class="hover:text-blue-400 hover:underline" href="https://space.bilibili.com/401742377" target="_blank">原神Bilibili</a>&nbsp;|-->
 <!--              <a class="hover:text-blue-400 hover:underline" href="https://t.me/genkitCN" target="_blank">tg群genkitCN</a>&nbsp;|-->
 <!--            </p>-->
-            <p><a class="text-cyan-500 underline hover:text-blue-400 hover:underline" href="https://github.com/Grasscutters/Grasscutter" target="_blank">备案信息</a></p>
+            <p><a class="text-cyan-500 underline hover:text-blue-400 hover:underline" href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2023006294号-1</a></p>
           </div>
           <div>
             <p class="text-right">&nbsp;</p>
