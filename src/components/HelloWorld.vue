@@ -25,9 +25,12 @@ onUnmounted(()=>{})
   <div>
     <!--  ↓↓↓↓  -->
     <div class="absolute -z-100000">
-      <video src="/video/甘雨夜晚.mp4" ref="bg" class="w-screen h-screen object-cover"
+<!--      https://fastly.jsdelivr.net/gh/MaxHu-arpg/gcIndex-cdn@latest/dist/video/%E7%94%98%E9%9B%A8%E5%A4%9C%E6%99%9A.mp4-->
+<!--      https://streamja.com/GGLnZ-->
+<!--      /video/甘雨夜晚.mp4-->
+      <video src="https://fastly.jsdelivr.net/gh/MaxHu-arpg/gcIndex-cdn@latest/dist/video/甘雨夜晚.mp4" ref="bg" class="w-screen h-screen object-cover"
              @canplaythrough="bg.play()" @pause='bgloading=true;bg.play();' @play="bgloading=false"
-             loop autoplay muted></video>
+             loop autoplay muted preload="auto"></video>
     </div>
     <div class="absolute -z-1 w-screen h-screen">
       <div v-if="bgloading" class="myloading">
